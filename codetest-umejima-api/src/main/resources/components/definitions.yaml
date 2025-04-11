@@ -1,0 +1,25 @@
+components:
+  schemas:
+    userId:
+      type: integer
+      format: int32
+
+    amount:
+      type: integer
+      format: int32
+      minimum: 0
+      maximum: 1000
+
+    description:
+      type: string
+
+    ErrorSchema:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+        message:
+          type: string

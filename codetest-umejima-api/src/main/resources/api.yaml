@@ -1,0 +1,48 @@
+openapi: 3.0.1
+info:
+  title: codetest-umejima API
+  version: 1.0.0
+
+paths:
+  /transactions:
+    post:
+      operationId: transactions
+
+      # test コードを見るとあるので念のため
+      parameters:
+        - in: header
+          name: apikey
+          required: true
+          schema:
+            type: string
+      tags:
+        - transactions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './components/request/transactions.yaml#/components/schemas/TransactionRequest'
+      responses:
+        '201':
+          description: Created
+        '402':
+          description: PaymentRequired
+          content:
+            application/json:
+              schema:
+                $ref: './components/definitions.yaml#/components/schemas/ErrorSchema'
+
+        # 提示されている課題内容に沿ってはいないが必要と思うので記載
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: './components/definitions.yaml#/components/schemas/ErrorSchema'
+        '500':
+          description: InternalServerError
+          content:
+            application/json:
+              schema:
+                $ref: './components/definitions.yaml#/components/schemas/ErrorSchema'

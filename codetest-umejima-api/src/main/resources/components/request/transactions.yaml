@@ -1,0 +1,15 @@
+components:
+  schemas:
+    TransactionRequest:
+      type: object
+      required:
+        - user_id
+        - amount
+        - description
+      properties:
+        user_id:
+          $ref: "./../definitions.yaml#/components/schemas/userId"
+        amount:
+          $ref: "./../definitions.yaml#/components/schemas/amount"
+        description:
+          $ref: "./../definitions.yaml#/components/schemas/description"
